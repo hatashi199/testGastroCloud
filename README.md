@@ -1,44 +1,66 @@
-# [Next.js Example](https://www.nextjs.org/)
+# Instalación del Proyecto
 
-<p>
-  <!-- Web -->
-  <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
-</p>
+Prueba técnica para la empresa Gastro Cloud.
 
-Using Next.js with Expo will enable you to [server side render](https://nextjs.org/features/server-side-rendering) the web part of your Expo app. This demo shows you how to setup your universal application to use use advanced universal modules from the Expo SDK like Camera, Gestures, Permissions, etc... with the Next.js tool-chain!
+## 1. Instalar las dependencias
 
-> 🚨 SSR is an experimental feature with Expo so modules might not be fully optimized for Next.js. If you find bugs please report them on the [Expo repo](https://github.com/expo/expo/issues) or [expo-cli repo](https://github.com/expo/expo-cli/issues) with the `[nextjs]` tag in the title.
+Abre un terminal y ejecuta uno de los siguientes comandos
 
-### ⚽️ Running in the browser
+```
+npm install         |       yarn
+```
 
-For the most updated guide you should refer to the Expo docs: [Using Next.js](https://docs.expo.dev/versions/latest/guides/using-nextjs/). Here are the [latest docs on master](https://github.com/expo/expo/blob/master/docs/pages/guides/using-nextjs.md).
+## 2. Instalar expo en el equipo
 
-In this approach you would be using SSR for web in your universal project. This is the recommended path because it gives you full access to the features of Expo and Next.js.
+A través de un terminal, instalas expo en tu equipo y lo inicias en el proyecto.
 
-- Bootstrap your project with Expo
-  - Install the CLI: `npm i -g expo-cli`
-  - Create a project: `expo init --template blank`
-  - `cd` into the project
-- Install the adapter:
-  - **yarn:** `yarn add @expo/next-adapter`
-  - npm: `npm i --save @expo/next-adapter`
-- Add Next.js support: `yarn next-expo`
-  - Always commit your changes first!
-  - You can optionally choose which customizations you want to do with `--customize or -c`
-  - Force reload changes with `--force or -f`
-- Start the project with `yarn next dev`
-  - Go to `http://localhost:3000/` to see your project!
+```
+npm install --global expo-cli
 
-### 🏁 New Commands
+expo init mi-proyecto
+```
 
-- **Starting web**
-  - 🚫 `expo start:web`
-  - ✅ `yarn next dev`
+## 3. Abrir expo de un Proyecto e iniciar el proyecto
 
-- **Building web**
-  - 🚫 `expo build:web`
-  - ✅ `yarn next build`
+```
+expo start  (Abre expo en navegador web)
+```
 
-### 👀 More Info
+- Tienes varias opciones para iniciar el proyecto:
 
-- [Next Adapter repo](https://github.com/expo/expo-cli/tree/master/packages/next-adapter)
+  - **Run in web browser** -> Inicia el proyecto a través del navegador web.
+  - **Run in Android device/emulator** -> Inicia el proyecto desde un emlador de android como puede ser Android Studio. También se puede iniciar el abroyecto al abrir expo con el siguiente comando:
+
+  ```
+  expo start --android
+  ```
+
+  - **Run in IOS simulator** -> Inicia el proyecto en un emulador de IOS.
+
+## 4. Abrir consola de Redux
+
+- Instalar la extensión de Chrome **ReduxDevTools**.
+- Añidir la siguiente línea si tu store de Redux es sencilla.
+
+```javascript
+const store = createStore(
+  reducer /* preloadedState, */,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+```
+
+- Añadir la siguiente línea si tu store de Redux es avanzada.
+
+```javascript
+import { createStore, applyMiddleware, compose } from "redux";
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  reducer,
+  /* preloadedState, */ composeEnhancers(applyMiddleware(...middleware))
+);
+```
+
+- Para abrir la consola de Redux puedes hacerlo de varias formas.
+  - Anclando la extensión en el panel de extensiones de Chrome y clicando sobre la extensión de **ReduxDevTools**.
+  - Abriendo el DevTools del navegador con _F12_ o _clic izquierdo_ del ratón y seleccionas la pestaña de **Redux**.
